@@ -5,6 +5,5 @@ class CLI
 
     def run
         puts "HELLO HELLO"
-        
     end
 end
