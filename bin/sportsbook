@@ -1,0 +1,13 @@
+!#/usr/bin/env ruby
+
+require 'open-uri'
+require 'pry'
+require 'rest-client'
+require 'json'
+require 'uri'
+require 'net/http'
+require 'openssl'
+
+require_relative '../lib/api'
+require_relative '../lib/cli'
+require_relative '../lib/matchup'
