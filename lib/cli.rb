@@ -1,9 +1,14 @@
-
+require './lib/api.rb'
 
 class CLI 
     puts "hello"
+    new_request = API.new
 
-    def run
-        puts "HELLO HELLO"
-    end
+    binding.pry
+
+    # def run
+    #     puts "HELLO HELLO"
+    # end
+
+
 end

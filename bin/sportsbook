@@ -4,9 +4,9 @@ require 'net/http'
 require 'openssl'
 require 'pry'
 require 'json'
+# require_relative '../lib/api'
 require_relative '../lib/cli'
-require_relative '../lib/api'
 
 
 
-API.new
+CLI.new
