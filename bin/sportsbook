@@ -9,4 +9,7 @@ require_relative '../lib/cli'
 
 
 
-CLI.new
+
+CLI.run
+
+# CLI.new.list_seasons
