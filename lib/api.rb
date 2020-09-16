@@ -1,52 +1,36 @@
+# puts "Hello"
+require 'pry'
+require 'open-uri'
+require 'net/http'
+require 'json'
+
+require_relative './team.rb'
 
 
+class API
 
-class API 
+    def self.get_player
+        random_id = rand(300)
+        url_1 = "https://www.balldontlie.io/api/v1/season_averages??season=2019&player_ids[]=#{random_id}"
+        uri_1 = URI.parse(url_1)
 
-    attr_accessor :json_response
+        player_stats = JSON.parse(Net::HTTP.get_response(uri_1).body) #data hash
 
-    def initialize
-        @json_response = {}
-    end
-
-    def self.run_seasons
-        puts "Hello World"
-        url = URI("https://api-basketball.p.rapidapi.com/seasons")
-        http = Net::HTTP.new(url.host, url.port)
-        http.use_ssl = true
-        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        request = Net::HTTP::Get.new(url)
-        request["x-rapidapi-host"] = 'api-basketball.p.rapidapi.com'
-        request["x-rapidapi-key"] = 'c997edfd68msh82cc19b11a7c7c0p17d381jsn0b774b534944'
-        response = http.request(request)
-        @json_response = JSON.parse(response.read_body)
-        # binding.pry
-    end
-
-    def self.run_nba
-        url = URI("https://api-basketball.p.rapidapi.com/games?season=2019-2010&timezone=europe%252Flondon&league=12&date=2019-11-23&team=134")
-
-        http = Net::HTTP.new(url.host, url.port)
-        http.use_ssl = true
-        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-
-        request = Net::HTTP::Get.new(url)
-        request["x-rapidapi-host"] = 'api-basketball.p.rapidapi.com'
-        request["x-rapidapi-key"] = 'c997edfd68msh82cc19b11a7c7c0p17d381jsn0b774b534944'
-
-        response = http.request(request)
        
-        @json_response = JSON.parse(response.read_body)
-        binding.pry
-        puts @json_response
+
+
+        url_2 = "https://www.balldontlie.io/api/v1/players/#{random_id}"
+        uri_2 = URI.parse(url_2)
+        player_card = JSON.parse(Net::HTTP.get_response(uri_2).body) #data hash
+
+        player_profile = player_stats.merge(player_card)
+        
+        # binding.pry
+        
+
+
+        
     end
-
-    def self.endpoint_query(endpoint)
-
-    end
-    
-
-
 
 
 

@@ -7,11 +7,15 @@ class CLI
 
 
     def self.run
-        puts "hello"
-        puts "Here are a list of today's NBA games."
-        input = gets.chomp
-        API.run_nba
+        puts "Hello. Welcome to the NBA ODDS app."
+        puts "Please enter from the list what you would like to see."
+        
     end
+
+    def self.get_nba
+        API.run_teams
+    end
+
 
 
     

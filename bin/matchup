@@ -1,0 +1,23 @@
+!#/usr/bin/env ruby
+require 'env'
+require 'uri'
+require 'net/http'
+require 'openssl'
+require 'pry'
+require 'json'
+
+require_relative '../lib/api'
+require_relative '../lib/player'
+
+require_relative '../lib/cli'
+
+
+
+
+# player = Player.new
+# Player.new
+
+team = Team.new
+# puts "#{player.first_name} #{player.last_name}"
+player = Player.new
+puts team.roster
