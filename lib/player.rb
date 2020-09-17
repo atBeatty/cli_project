@@ -1,34 +1,21 @@
-
 require_relative './api.rb'
+
+
 class Player
 
-    attr_accessor  :player_hash, :first_name, :last_name
+    attr_accessor :games_played, :player_id, :season, :min, :fgm, :fga, :fg3m, :fg3a, :ftm, :fta, :oreb, :dreb, :reb, :ast, :stl, :blk, :turnover, :pf, :pts, :fg_pct, :fg3_pct, :ft_pct, :id, :first_name, :height_feet, :height_inches, :last_name, :position, :team, :weight_pounds
 
-    def initialize(player_hash=API.get_player)
-        @player_hash = player_hash
-        @first_name = player_hash["first_name"]
-        @last_name = player_hash["last_name"]
-        
-        #SEASON AVERAGES
-        
-
-    end
-
-    def full_name
-       @first_name + " " + @last_name
+    def initialize
+        player_hash = API.get_player
+        player_hash.each do |attr, val|
+            self.send(("#{attr}="), val)
+        end
     end
 
 
-    def stats
 
 
-        @pts = player_hash["data"].first["pts"]
-        puts @pts
-        @ast = player_hash["data"].first["ast"]
-        puts @ast
-        @reb = player_hash["data"].first["reb"] 
-        puts @reb
-    end
+    
 
 
 

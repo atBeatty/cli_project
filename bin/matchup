@@ -7,9 +7,10 @@ require 'pry'
 require 'json'
 
 require_relative '../lib/api'
-require_relative '../lib/player'
+require_relative '../lib/team.rb'
 
-require_relative '../lib/cli'
+require_relative '../lib/player.rb'
+require_relative '../lib/cli.rb'
 
 
 
@@ -17,7 +18,9 @@ require_relative '../lib/cli'
 # player = Player.new
 # Player.new
 
-team = Team.new
-# puts "#{player.first_name} #{player.last_name}"
-player = Player.new
-puts team.roster
+team_a = Team.new
+team_b = Team.new
+
+
+CLI.run
+binding.pry

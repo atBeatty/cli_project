@@ -1,4 +1,3 @@
-require_relative './api.rb'
 
 
 
@@ -8,32 +7,31 @@ class CLI
 
     def self.run
         puts "Hello. Welcome to the NBA ODDS app."
-        puts "Please enter from the list what you would like to see."
+
         
     end
 
-    def self.get_nba
-        API.run_teams
+    #SET UP HOME TEAM(USER)
+    def self.display_team(team)
+        puts "HOME TEAM #{team.roster_names}"
     end
 
 
 
-    
-   
+    #SET UP VISITOR TEAM
 
 
-    # def run(input)
+    #GAMETIME
 
-    #     puts "How are you? What sport would you like to query?"
-    #     input = gets.chomp
-    #     newapi = API.new
-    #     puts newapi.run_seasons
-
-    # end
+    #HALFTIME/BREAKDOWN
 
 
+    #GAME OVER
+
+    #MVP/HIGHLIGHTS
 
 
+  
 
 
 
