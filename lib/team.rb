@@ -1,5 +1,5 @@
 
-require_relative './player.rb'
+require_relative './player'
 class Team
 
     attr_accessor :roster
@@ -14,7 +14,7 @@ class Team
 
     def roster_names
         @roster.collect do |player| 
-            player.full_name
+            player.first_name
         end
     end
     def roster_ids

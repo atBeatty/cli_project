@@ -1,4 +1,4 @@
-require_relative './api.rb'
+require_relative './api'
 
 
 class Player
