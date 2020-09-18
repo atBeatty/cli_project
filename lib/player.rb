@@ -17,14 +17,7 @@ class Player
     #THIS IS AN ATTRIBUTE SETTER
     def stats
         stats_hash = API.get_player_stats["data"][0]
-        # binding.pry
-        # stats_hash.each do |stat, value|
-        #     puts "#{stat} - #{value}"
-        # end
-
-        # stats_hash.each do |attr, val|
-        #     @data.send(("#{attr}="), val)
-        # end
+        
     end
 
     def player_card

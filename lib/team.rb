@@ -25,7 +25,9 @@ class Team
 
     def random_roster_of_five
         #ROSTER OF 8 Players GETS SHUFFLED FOR THE PLAYING FIVE 
-        @roster.shuffle!.first(5)
+        @roster.shuffle!.first(5).collect do |player| 
+            "#{player.first_name} #{player.last_name}"
+        end
     end
 
 
