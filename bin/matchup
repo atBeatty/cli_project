@@ -16,8 +16,8 @@ require_relative '../lib/cli.rb'
 
 
 
-# player = Player.new
-# Player.new
+player = Player.new
 
+# Player.new
 
 CLI.run

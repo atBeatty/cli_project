@@ -3,17 +3,33 @@ require_relative './api'
 
 class Player
 
-    attr_accessor :games_played, :player_id, :season, :min, :fgm, :fga, :fg3m, :fg3a, :ftm, :fta, :oreb, :dreb, :reb, :ast, :stl, :blk, :turnover, :pf, :pts, :fg_pct, :fg3_pct, :ft_pct, :id, :first_name, :height_feet, :height_inches, :last_name, :position, :team, :weight_pounds
+    attr_accessor :data, :id, :first_name, :height_feet, :height_inches, :last_name, :position, :team, :weight_pounds
 
     def initialize
         player_hash = API.get_player
         player_hash.each do |attr, val|
             self.send(("#{attr}="), val)
         end
+
     end
 
+    
+    #THIS IS AN ATTRIBUTE SETTER
+    def stats
+        stats_hash = API.get_player_stats["data"][0]
+        # binding.pry
+        # stats_hash.each do |stat, value|
+        #     puts "#{stat} - #{value}"
+        # end
 
+        # stats_hash.each do |attr, val|
+        #     @data.send(("#{attr}="), val)
+        # end
+    end
 
+    def player_card
+        [@first_name, @last_name, @position, @team["full_name"]]
+    end
 
     
 
