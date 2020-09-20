@@ -2,13 +2,14 @@
 require_relative './player'
 class Team
 
-    attr_accessor :roster
+    attr_accessor :roster, :lineup
 
     def initialize
         @roster = []
         8.times do 
             @roster << Player.new
         end
+        @lineup = @roster.first(5)
         
     end
 
@@ -17,15 +18,9 @@ class Team
             "#{index}. #{player.first_name} #{player.last_name}"
         end
     end
-
-    def roster_ids
-        @roster.collect.with_index(1) do |player| 
-            player.player_hash["id"]
-        end
-    end
     
     #ROSTER OF 8 Players GETS SHUFFLED FOR THE PLAYING FIVE 
-    def random_roster_of_five
-        @roster.shuffle!.first(5)
+    def random_roster
+        @lineup.shuffle!
     end
 end

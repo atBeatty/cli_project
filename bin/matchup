@@ -8,10 +8,11 @@ require 'json'
 require_relative '../lib/api'
 require_relative '../lib/player.rb'
 require_relative '../lib/team.rb'
+require_relative '../lib/game.rb'
 require_relative '../lib/cli.rb'
 
 
 
 
 
-CLI.run
+CLI.new.run

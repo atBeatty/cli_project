@@ -18,8 +18,6 @@ class Player
         @stats["data"].first["pts"] * (48 / @stats["data"].first["min"].to_f + 1)
     end
 
-
-
     def player_card
         [@first_name, @last_name, @position, @team["full_name"]]
     end
@@ -27,17 +25,6 @@ class Player
     def full_name
         [@first_name, @last_name]
     end
-
-
-    
-
-
-
-
-
-
-
-
 end
 
 

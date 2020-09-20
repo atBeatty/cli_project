@@ -3,120 +3,82 @@
 
 
 class CLI
-    attr_accessor :home_players, :away_players, :home_score, :away_score
-    #SET UP TWO TEAMS TO PLAY A BBALL GAME, USER IS THE HOME TEAM
-    HOME_TEAM = Team.new
-    AWAY_TEAM = Team.new
-    
+    GAME = Game.new
 
-
-
-    def self.run
-        puts "Hello. Welcome to the NBA Matchup app. You are the coach of the HOME TEAM. You will decide if you want to substitute your players after each period in tonight's match up.\n\n"
-        CLI.team_selections
-        CLI.display_player_card
-        #GAME TIME
-        self.game
-        CLI.scoreboard
-        CLI.subs
+    def run
+        onboarding
+        coach_select_player
+        basketball_match
     end
 
-    #PRINTS OUT HOME AND AWAY TEAM
-    def self.team_selections
-        puts "Here is tonight's matchup.\n"
-        puts HOME_TEAM.roster_names
-        puts "\nHOME\n===========================\nAWAY\n\n"
-        puts AWAY_TEAM.roster_names
+    def onboarding
+        puts Array.new(5, " ")
+        puts "Hello. Welcome to the NBA Matchup app. You are the coach of the HOME TEAM. You will decide if you want to substitute your players after each period in tonight's match up.\n\nHere are the teams for tonight's matchup.\n\n"
+
+        GAME.home_team.roster.collect{|pl| pl.full_name.join(" ")}.each.with_index(1){|pl, index| puts "#{index}. #{pl}"}
+        puts "\n\nHOME\n\n=============\n\nAWAY\n\n"
+        GAME.away_team.roster.collect{|pl| pl.full_name.join(" ")}.each.with_index(1){|pl, index| puts "#{index}. #{pl}"}
     end
 
-    #RETRIEVES A PLAYER FROM THE TEAM AND GETS MORE INFO.
-    def self.display_player_card
-        puts "Would you like to see a player card? If so, enter a number from your team roster.\n\n"
-        input = gets.chomp # WOULD YOU LIKE TO SEE PLAYER CARD?
-        if input != "n"
-            puts HOME_TEAM.roster[input.to_i-1].player_card
-            self.display_player_card
+    def basketball_match
+
+        periods = ["FIRST", "SECOND", "THIRD", "FOURTH"]
+        periods.each do |period|
+            puts period
+            puts GAME.total_points_from_lineups.join(" <HOME  AWAY> ")
+            substitute
         end
+        puts "END OF GAME"
     end
 
-    # #DISPLAY POINTS FROM EACH TEAM
-    # def self.scoreboard(lineup)
-    #     binding.pry
-    # home_score = []
-    # away_score = []
- 
-    #     @home_players.each do |pl|
-    #         if !pl.stats["data"].empty?
-    #             home_score << (pl.points_per_whole_game / 4)
-    #         else
-    #             home_score << 1.5
-    #         end
-    #     end
-        
-    #     @away_players.each do |pl|
-    #         if !pl.stats["data"].empty?
-    #             away_score << (pl.points_per_whole_game / 4)
-    #             away_score << pl.full_name
-    #         else
-    #             away_score << 1.5
-    #             away_score << pl.full_name
+    def substitute
+        puts "Do you want to make substitutions?"
+        substitute_lineup
 
-    #         end
-    #     end
-    #     puts "HOME TEAM - #{home_score.reduce(:+).to_i} AWAY TEAM - #{away_score.reduce(:+).to_i}"
-    # end
-    #DISPLAY POINTS FROM EACH TEAM
-    def self.game
-
-        #SCOREBOARD STARTS AT ZERO
-        home_score = []
-        away_score = []
-        puts "Here are you starting lineups for tonight's match."
-        @HOME_TEAM.random_roster_of_five
-        
-        @home_players.each do |pl|
-            if !pl.stats["data"].empty?
-                home_score << (pl.points_per_whole_game / 4)
-            else
-                home_score << 1.5
-            end
-        end
-        
-        @away_players.each do |pl|
-            if !pl.stats["data"].empty?
-                away_score << (pl.points_per_whole_game / 4)
-                away_score << pl.full_name
-            else
-                away_score << 1.5
-                away_score << pl.full_name
-            end
-        end
-        puts "HOME TEAM - #{home_score.reduce(:+).to_i} AWAY TEAM - #{away_score.reduce(:+).to_i}"
     end
 
-    #SUBSTITUTES
-    def self.subs
-        away_players = AWAY_TEAM.random_roster_of_five
-        puts "Would you like to make changes to your lineup?"
+    def coach_select_player
+        puts "Coach, would you like to find out more about your players? (y) Or are you ready to play? (n)"
+        player_selection
+    end
+
+
+    #HELPER METHOD FOR COACH_SELECT_PLAYER
+    def player_selection
         input = gets.chomp
         if input == "y"
-            home_players = HOME_TEAM.random_roster_of_five
+            puts "Which player would you like to choose?"
+            number_index = gets.chomp
+            puts GAME.home_team.roster[number_index.to_i-1].player_card
+            coach_select_player
+        elsif input == "n"
+            puts "Game on!"
         else
-            puts "You chose to keep the same players on the court."
+            player_selection
         end
     end
 
-    # #GAME TIME FIVE PLAYERS
-        # def self.current_lineups
-        #     puts "Here are the current lineups.\n\nHOME / AWAY\n"
-        #     home_players = HOME_TEAM.starting_lineup
-        #     home_players.each {|player| puts player.full_name.join(" ")}
-        #     puts "===================================================="
-        #     away_players = AWAY_TEAM.starting_lineup
-        #     away_players.each {|player| puts player.full_name.join(" ")}
-        # end
+    #HELPER METHOD FOR SUBSTITUTE
+    def substitute_lineup
+        input = gets.chomp
+        if input == "y"
+            binding.pry
+            GAME.home_team.random_roster
+            binding.pry
+        elsif input == "n"
+            puts "Here we go!"
+        else
+            substitute_lineup
+        end
+
+    end
 
 
 
 
+
+
+
+
+   
 end
