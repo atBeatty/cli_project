@@ -1,5 +1,4 @@
-!#/usr/bin/env ruby
-require 'env'
+#!/usr/bin/env ruby
 require 'uri'
 require 'net/http'
 require 'openssl'
@@ -8,11 +7,8 @@ require 'json'
 
 require_relative '../lib/api'
 require_relative '../lib/player.rb'
-
 require_relative '../lib/team.rb'
-
 require_relative '../lib/cli.rb'
-
 
 
 
