@@ -1,7 +1,3 @@
-
-
-
-
 class CLI
     GAME = Game.new
 
@@ -21,27 +17,28 @@ class CLI
     end
 
     def basketball_match
-
         periods = ["FIRST", "SECOND", "THIRD", "FOURTH"]
         periods.each do |period|
-            puts period
-            puts GAME.total_points_from_lineups.join(" <HOME  AWAY> ")
+            puts "\n\n#{period}\n\n"
+            puts "\n#{GAME.total_points_from_lineups_home}\n"
+            puts "\n#{GAME.total_points_from_lineups_away}\n"
+            puts "\n\n#{GAME.home_score} HOME/AWAY #{GAME.away_score}\n\n"
+
+
             substitute
         end
-        puts "END OF GAME"
+        puts "\n\nEND OF GAME"
     end
 
     def substitute
         puts "Do you want to make substitutions?"
         substitute_lineup
-
     end
 
     def coach_select_player
         puts "Coach, would you like to find out more about your players? (y) Or are you ready to play? (n)"
         player_selection
     end
-
 
     #HELPER METHOD FOR COACH_SELECT_PLAYER
     def player_selection
@@ -52,7 +49,7 @@ class CLI
             puts GAME.home_team.roster[number_index.to_i-1].player_card
             coach_select_player
         elsif input == "n"
-            puts "Game on!"
+            puts "\n\nGame time!\n\n"
         else
             player_selection
         end
@@ -62,23 +59,11 @@ class CLI
     def substitute_lineup
         input = gets.chomp
         if input == "y"
-            binding.pry
             GAME.home_team.random_roster
-            binding.pry
         elsif input == "n"
             puts "Here we go!"
         else
             substitute_lineup
         end
-
     end
-
-
-
-
-
-
-
-
-   
 end

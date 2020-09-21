@@ -10,7 +10,6 @@ class Team
             @roster << Player.new
         end
         @lineup = @roster.first(5)
-        
     end
 
     def roster_names
@@ -21,6 +20,7 @@ class Team
     
     #ROSTER OF 8 Players GETS SHUFFLED FOR THE PLAYING FIVE 
     def random_roster
-        @lineup.shuffle!
+        @roster.shuffle!
+        @lineup = @roster.first(5)
     end
 end
