@@ -29,6 +29,10 @@ class Game
 
     #GOES THROUGH CURRENT LINEUP AND ADDS PLAYERS POINTS TO AWAY SCORES
     def total_points_from_lineups_away
+        binding.pry
+        self.away_team.lineup.collect {|pl| pl.points}.inject{|sum, pts| sum + pts}
+
+
         @away_team.lineup.each do |pl|
             if !pl.stats["data"].empty?
                 puts "#{pl.full_name.join(" ")} #{pl.points_per_full_game}"
