@@ -14,7 +14,7 @@ class Game
         @away_score = 0
     end
 
-    #GOES THROUGH CURRENT LINEUP AND ADDS PLAYERS POINTS TO TEAM SCORES
+    #GOES THROUGH CURRENT LINEUP AND ADDS PLAYERS POINTS TO HOME SCORES
     def total_points_from_lineups_home
         @home_team.lineup.each do |pl|
             if !pl.stats["data"].empty?
@@ -25,10 +25,9 @@ class Game
                 @home_score += 2
             end
         end
-        # @home_score
     end
 
-    #GOES THROUGH CURRENT LINEUP AND ADDS PLAYERS POINTS TO TEAM SCORES
+    #GOES THROUGH CURRENT LINEUP AND ADDS PLAYERS POINTS TO AWAY SCORES
     def total_points_from_lineups_away
         @away_team.lineup.each do |pl|
             if !pl.stats["data"].empty?
@@ -39,6 +38,5 @@ class Game
                 @away_score += 2
             end
         end
-        # @away_score
     end
 end

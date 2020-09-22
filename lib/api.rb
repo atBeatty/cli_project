@@ -10,7 +10,7 @@ class API
         random_id = rand(300)
     end
 
-    
+    #
     def self.get_player_stats(id)
         url_1 = "https://www.balldontlie.io/api/v1/season_averages??season=2018&player_ids[]=#{id}"
         uri_1 = URI.parse(url_1)

@@ -1,3 +1,7 @@
+#DESCRIPTION
+This is a CLI project that uses an API to collect basketball player stats and information. It takes a user through a simulated basketball game.
+
+
 #FUTURE DEVELOPMENTS
 
 ##AI
@@ -14,3 +18,6 @@ The current program is teseting a lot of functionality with getting players and 
 
 ##Duplicate Players
 Duplicate players being selected at random during team creation.
+
+##IDs
+The data hash from the API that is responsible to retrieve stats for each player returns a lot of players that have an empty array. This causes the program to freeze up when iterating through team rosters. Right now, if a player has an empty data array the program assigns the player 2 points a quarter/period.

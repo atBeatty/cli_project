@@ -20,23 +20,32 @@ class CLI
 
     #BASKETBALL_MATCH IS A CLI METHOD THAT ITERATES THROUGH FOUR PERIODS OF A BASKETBALL MATCH, WITHIN THE LOOP IT USES GAME METHODS WHICH AGGREGATE POINTS BASED ON AVERAGE PTS FROM THE PLAYER STATS PROPERTY
     def basketball_match
+        GAME.away_score = 0
+        GAME.home_score = 0
         periods = ["FIRST", "SECOND", "THIRD", "FOURTH"]
         periods.each do |period|
-            puts "\n\n#{period}\n\n"
             GAME.total_points_from_lineups_home
             puts "\n\nHOME\n\n=============\n\nAWAY\n\n"
             GAME.total_points_from_lineups_away
             puts "\n\n#{GAME.home_score} < HOME AWAY > #{GAME.away_score}\n\n"
-            # puts "\n#{GAME.total_points_from_lineups_home}\n"
-            # puts "\n#{GAME.total_points_from_lineups_away}\n"
-            # puts "\n\n#{GAME.home_score} HOME/AWAY #{GAME.away_score}\n\n"
-            #SWITCH UP THE AWAY TEAM FOR VARIETY IN THEIR PERFORMANCE
+            #AWAY TEAM WILL ALSO ROTATE EVERY PERIOD
             GAME.away_team.random_roster
+            puts "\n\nEND OF #{period}\n\n"
 
             #USER GETS TO MAKE SUBS BEFORE NEXT PERIOD 
             substitute unless period == "FOURTH"
         end
         puts "\n\nEND OF GAME\n\n"
+        rematch
+    end
+
+    #ALLOWS USER TO SELECT A REMATCH WITH SAME SQUAD
+    def rematch
+        puts "\nRematch?\n"
+        input = gets.chomp
+        if input == "y"
+            self.basketball_match
+        end
     end
 
     #ALLOWS USER TO DECIDE TO MAKE SUBS
@@ -61,7 +70,7 @@ class CLI
             puts "#{GAME.home_team.roster[number_index.to_i-1].points} points per game"
             coach_select_player
         elsif input == "n"
-            puts "\n\nGame time!\n\n"
+            puts "\n\nGAME TIME, LET'S GET READY FOR TIP!\n\n"
         else
             player_selection
         end

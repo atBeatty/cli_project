@@ -33,9 +33,9 @@ class Player
 
     def points_per_full_game
         if self.stats["data"].empty?
-            "This player is not good."
+            2
         else
-            (self.stats["data"][0]["pts"] * (36 / self.stats["data"][0]["min"].to_f)/4).to_i
+            (self.stats["data"][0]["pts"] * (36 / self.stats["data"][0]["min"].to_f+2)/4).to_i
         end
         
     end

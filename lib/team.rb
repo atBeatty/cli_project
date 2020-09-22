@@ -3,16 +3,13 @@ require_relative './player'
 class Team
 
     attr_accessor :roster, :lineup
-
+    #INITIALIZE WITH A ROSTER, FILLED WITH PLAYER OBJECTS
     def initialize
-        
         @roster = []
-       
         8.times do 
             roster << Player.new
         end
         @lineup = @roster.first(5)
-
     end
 
     #FOR ONBOARDING, THIS CAN DISPLAY NAMES OF ALL 8 PLAYERS ON THE ROSTER
