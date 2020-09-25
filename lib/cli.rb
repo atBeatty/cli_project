@@ -3,6 +3,7 @@ class CLI
 
     def run
         onboarding
+        Player.sort_by_name
         coach_select_player
         basketball_match
     end

@@ -4,7 +4,7 @@ require_relative './api'
 class Player
     
     attr_accessor :stats, :id, :first_name, :height_feet, :height_inches, :last_name, :position, :team, :weight_pounds
-    
+    @@all = []
     
     def initialize
         player_hash = API.get_player
@@ -14,7 +14,21 @@ class Player
         end
         @stats = API.get_player_stats(self.id)
         # puts self.stats
+
+        @@all << self
     end
+    
+    def self.sort_by_name
+        self.all.sort_by{|pl| pl.first_name}
+        binding.pry
+    end
+    def self.all
+        @@all
+    end
+
+
+
+
 
     def points
         if self.stats["data"].empty?
